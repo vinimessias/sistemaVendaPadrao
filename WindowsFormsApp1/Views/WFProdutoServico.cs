@@ -42,11 +42,19 @@ namespace WindowsFormsApp1
 
         private void WFProdutoServico_Load(object sender, EventArgs e)
         {
-            Categoria categoria = new Categoria();
+            try
+            {
+                Categoria categoria = new Categoria();
+                comboBoxCategoria.DataSource = categoria.ListaCategoria(); // lista buscada no banco de dados
+                comboBoxCategoria.DisplayMember = "Descricao"; //nome do atributo a ser exibido
+                comboBoxCategoria.ValueMember = "ID"; // valor do atributo
+            }
+            catch (Exception exception)
+            {
 
-            comboBoxCategoria.DataSource = categoria.ListaCategoria();
-            comboBoxCategoria.DisplayMember = categoria.Descricao;
-        
+                MessageBox.Show("Erro 0x00186!!! Entre em contato com o administrador do sistema. Detalhes:" + exception.Message);
+            }
+            
 ;        }
     }
 }
